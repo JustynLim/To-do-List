@@ -8,9 +8,16 @@ import datetime
 import os
 import sqlite3
 
+### Global Variable ###
+global_path     = os.path.dirname(__file__)
+resources_path  = os.path.join(global_path, "resources")
+db_path         = os.path.join(global_path, "db")
+
 # Database
-Connect = sqlite3.connect("account.db")
+path_db_file = os.path.join(db_path, "account.db")
+Connect = sqlite3.connect(path_db_file)
 cursor = Connect.cursor()
+
 
 ######################################################################################################################################
 ###--- Window ---###
@@ -32,13 +39,14 @@ task_list =[]
 ######################################################################################################################################
 ###--- Background design ---###
 # App Icon
-Image_path1 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Icon1.png") #Path to image
+path_icon1 = os.path.join(resources_path, "Icon1.png") #Path to image
 
-Image_icon = PhotoImage(file = Image_path1)
+Image_icon = PhotoImage(file = path_icon1)
 root.iconphoto(False, Image_icon)
 
 # Topbar
-Image_path2 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "amethyst.jpg")
+
+Image_path2 = os.path.join(resources_path, "amethyst.jpg")
 image1 = Image.open(Image_path2)    # Resize the image
 
 background_width = 1600   # Set size of the image
@@ -65,7 +73,7 @@ Heading = Label(root, text="TASK",  font = "arial 20 bold", fg = "white", bg = "
 Heading.place(x = 400, y = 20)
 
 # darkmode image path
-Image_path3 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "topback.png")
+Image_path3 = os.path.join(resources_path, "topback.png")
 image2 = Image.open(Image_path3)
 
 resized_topbar = image2.resize((background_width, background_height), Image.LANCZOS)
@@ -330,7 +338,7 @@ Add_button = Button(Usr_frame, text = "ADD", font = "arial 20 bold", width = 5, 
 Add_button.place(x = 320, y = 0)
 
 # Delete task buttton
-Image_path4 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "delete.png")
+Image_path4 = os.path.join(resources_path, "delete.png")
 image3 = Image.open(Image_path4)
 
 del_width = 50
@@ -343,7 +351,7 @@ delete_button = Button(root, image = New_del , bg = "#9960D1", bd = 0, command =
 delete_button.place(x = 865, y = 180)
 
 # Edit task button
-Image_path5 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "edit.png")
+Image_path5 = os.path.join(resources_path, "edit.png")
 image4 = Image.open(Image_path5)
 
 edit_width = 50
@@ -356,7 +364,7 @@ edit_button = Button(root, image=New_edit, bg="#9960D1", bd = 0, command = edit_
 edit_button.place(x = 865, y = 280)
 
 # Complete task button
-Image_path6 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "complete.png")
+Image_path6 = os.path.join(resources_path, "complete.png")
 image5 = Image.open(Image_path6)
 
 complete_width = 50
@@ -369,7 +377,7 @@ complete_button = Button(root, image=New_complete, bg="#9960D1", bd=0, command=c
 complete_button.place(x=865, y=380)
 
 # Calendar button
-Image_path7 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "calendar.png")
+Image_path7 = os.path.join(resources_path, "calendar.png")
 image6 = Image.open(Image_path7)
 
 calendar_width = 50
@@ -382,10 +390,10 @@ calendar_button = Button(root, image=New_calendar, bg="#9960D1", bd=0, command= 
 calendar_button.place(x=15,y=15)
 
 # Theme change buton
-Image_path8 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "light_mode.png")
+Image_path8 = os.path.join(resources_path, "light_mode.png")
 image7 = Image.open(Image_path8)
 
-Image_path9 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dark_mode.png")
+Image_path9 = os.path.join(resources_path, "dark_mode.png")
 image8 = Image.open(Image_path9)
 
 lightmode_button = ImageTk.PhotoImage(image7)
